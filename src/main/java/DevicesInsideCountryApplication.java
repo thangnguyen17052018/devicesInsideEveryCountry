@@ -17,19 +17,19 @@ public class DevicesInsideCountryApplication {
 
         String xmlStatusText = countryExaminer.getJobStatus(requestID);
         String status = xmlParser.parseXML(xmlStatusText, Constant.JOB_STATUS_TAG);
-        boolean isComplete = true;
+        boolean isCompleted = true;
         while (!Constant.COMPLETED_STATUS.equals(status)) {
 
             xmlStatusText = countryExaminer.getJobStatus(requestID);
             status = xmlParser.parseXML(xmlStatusText, Constant.JOB_STATUS_TAG);
 
             if (Constant.DELETED_STATUS.equals(status) || Constant.CANCELLED_STATUS.equals(status)) {
-                isComplete = false;
+                isCompleted = false;
                 break;
             }
         }
 
-        if (isComplete) {
+        if (isCompleted) {
             String result = countryExaminer.getResponse(requestID);
             String[] tokenLines = result.split("\n");
             Map<String, Integer> devicesEveryCountryMap = new HashMap<>();

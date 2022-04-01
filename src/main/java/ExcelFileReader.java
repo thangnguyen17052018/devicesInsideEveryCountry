@@ -5,12 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class ReadExcelFile {
+public class ExcelFileReader {
 
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
-    public ReadExcelFile(String filePath) {
+    public ExcelFileReader(String filePath) {
         try {
             File source = new File(filePath);
             FileInputStream fileInputStream = new FileInputStream(source);

@@ -12,6 +12,6 @@ public class Coordinate {
     private double longitude;
 
     public boolean isNullIsLand() {
-        return (latitude == 0) && (longitude == 0);
+        return (latitude == 0.0) && (longitude == 0.0);
     }
 }

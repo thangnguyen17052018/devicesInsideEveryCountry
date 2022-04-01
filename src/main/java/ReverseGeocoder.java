@@ -11,7 +11,7 @@ public class ReverseGeocoder {
     private static final String BATCH_GEOCODING_RESOURCE = "https://batch.geocoder.ls.hereapi.com/6.2/jobs";
     private static final String API_KEY = "au0q1sA6wl3opHfXty_Vr8OC0NY9qiYuqLANW_Tj3Iw";
 
-    public HttpResponse<String> postBatchRequestReverseGeocoding(List<Coordinate> coordinateList) throws IOException, InterruptedException {
+    public HttpResponse<String> sendPostBatchRequestReverseGeocoding(List<Coordinate> coordinateList) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
 
         String bodyString = createMessageBody(coordinateList);
@@ -26,7 +26,7 @@ public class ReverseGeocoder {
         return httpClient.send(batchRequest, HttpResponse.BodyHandlers.ofString());
     }
 
-    public HttpResponse<String> getRequestJobStatus(String requestId) throws IOException, InterruptedException {
+    public HttpResponse<String> sendGetRequestJobStatus(String requestId) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         String requestUri = BATCH_GEOCODING_RESOURCE + "/" + requestId + "?action=status&apiKey=" + API_KEY;
 
@@ -39,7 +39,7 @@ public class ReverseGeocoder {
         return httpClient.send(revGeocodingRequest, HttpResponse.BodyHandlers.ofString());
     }
 
-    public HttpResponse<String> getResponse(String requestId) throws IOException, InterruptedException {
+    public HttpResponse<String> getResponseResult(String requestId) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         String requestUri = BATCH_GEOCODING_RESOURCE + "/" + requestId + "/result?apiKey=" + API_KEY + "&outputcompressed=false&matchCode=exact&parsedRequest=parsedRequestCountry";
 

@@ -7,15 +7,15 @@ import java.util.List;
 public class CountryExaminer {
     private final ReverseGeocoder reverseGeocoder = new ReverseGeocoder();
 
-    public String getPostBatchResponse(List<Coordinate> coordinateList) throws IOException, InterruptedException {
-        return reverseGeocoder.postBatchRequestReverseGeocoding(coordinateList).body();
+    public String getBulkPostResponse(List<Coordinate> coordinateList) throws IOException, InterruptedException {
+        return reverseGeocoder.sendPostBatchRequestReverseGeocoding(coordinateList).body();
     }
 
     public String getJobStatus(String requestId) throws IOException, InterruptedException {
-        return reverseGeocoder.getRequestJobStatus(requestId).body();
+        return reverseGeocoder.sendGetRequestJobStatus(requestId).body();
     }
 
-    public String getResponse(String requestId) throws IOException, InterruptedException {
-        return reverseGeocoder.getResponse(requestId).body();
+    public String getResult(String requestId) throws IOException, InterruptedException {
+        return reverseGeocoder.getResponseResult(requestId).body();
     }
 }

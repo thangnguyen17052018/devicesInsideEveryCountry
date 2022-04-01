@@ -5,4 +5,7 @@ public class Constant {
     public static final String COMPLETED_STATUS = "completed";
     public static final String DELETED_STATUS = "deleted";
     public static final String CANCELLED_STATUS = "cancelled";
+    public static final String BREAK_LINE_REGEX = "\n";
+    public static final String OUTPUT_FIELD_DELIMITER = "\\|";
+
 }

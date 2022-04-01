@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoordinateReader {
-    private final ExcelFileReader reader = new ExcelFileReader("F:\\location data_2022_02_10.xlsx");
+    private final ExcelFileReader reader = new ExcelFileReader("G:\\location data_2022_02_10.xlsx");
     public static final int LATITUDE_COLUMN = 8;
     public static final int LONGITUDE_COLUMN = 9;
     public static final int SHEET_DATA_INDEX = 1;

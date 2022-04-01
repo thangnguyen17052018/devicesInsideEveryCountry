@@ -26,8 +26,8 @@ public class DevicesInsideCountryApplication {
         });
 
         System.out.println("All " + reader.getNumberOfDevices() + " devices");
-//
-//        devicesEveryCountryMap.forEach((countryName, numberOfDevices) -> System.out.println(countryName + ": " + numberOfDevices + " devices"));
+
+        devicesEveryCountryMap.forEach((countryName, numberOfDevices) -> System.out.println(countryName + ": " + numberOfDevices + " devices"));
 
     }
 

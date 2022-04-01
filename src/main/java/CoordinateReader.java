@@ -21,10 +21,6 @@ public class CoordinateReader {
         return listCoordinates;
     }
 
-    public void printCoordinates(List<Coordinate> listCoordinates) {
-        listCoordinates.forEach(System.out::println);
-    }
-
     public int getNumberOfDevices() {
         return reader.getRowCount(SHEET_DATA_INDEX) - 1;
     }

@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -19,10 +18,10 @@ public class ReverseGeocoder {
         String requestUri = GEOCODING_RESOURCE + "?apiKey=" + API_KEY + "&at=" + encodeQuery + "&lang=en-US";
 
         HttpRequest revGeocodingRequest = HttpRequest.newBuilder()
-                                                    .GET()
-                                                    .uri(URI.create(requestUri))
-                                                    .timeout(Duration.ofMillis(2000))
-                                                    .build();
+                .GET()
+                .uri(URI.create(requestUri))
+                .timeout(Duration.ofMillis(2000))
+                .build();
 
         return httpClient.sendAsync(revGeocodingRequest, HttpResponse.BodyHandlers.ofString());
     }

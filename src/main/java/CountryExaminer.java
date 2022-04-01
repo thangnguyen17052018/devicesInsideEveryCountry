@@ -11,8 +11,8 @@ public class CountryExaminer {
 
     public String examineCountryNameOf(Coordinate locationCoordinate) throws IOException, InterruptedException {
         String response = reverseGeocoder.reverseGeocodeAt(locationCoordinate.getLatitude() + "," + locationCoordinate.getLongitude())
-                                            .join()
-                                            .body();
+                .join()
+                .body();
         JsonNode responseJsonNode = mapper.readTree(response);
         String countryName = "";
 

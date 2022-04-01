@@ -51,6 +51,7 @@ public class DevicesInsideCountryApplication {
                     String countryName = record[COUNTRY_NAME_INDEX];
                     int count = devicesEveryCountryMap.getOrDefault(countryName, 0);
                     devicesEveryCountryMap.put(countryName, ++count);
+                    countDevicesInUsed++;
                 }
             }
 

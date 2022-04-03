@@ -1,14 +1,16 @@
+package com.tma.devicesinsideeverycountry;
+
 import lombok.NoArgsConstructor;
 
 import java.io.IOException;
-import java.util.List;
 
 @NoArgsConstructor
 public class CountryExaminer {
+
     private final ReverseGeocoder reverseGeocoder = new ReverseGeocoder();
 
-    public String getBulkPostResponse(List<Coordinate> coordinateList) throws IOException, InterruptedException {
-        return reverseGeocoder.sendPostBatchRequestReverseGeocoding(coordinateList).body();
+    public String getBulkPostResponse(String requestBody) throws IOException, InterruptedException {
+        return reverseGeocoder.sendPostBatchRequestReverseGeocoding(requestBody).body();
     }
 
     public String getJobStatus(String requestId) throws IOException, InterruptedException {
@@ -18,4 +20,5 @@ public class CountryExaminer {
     public String getResult(String requestId) throws IOException, InterruptedException {
         return reverseGeocoder.getResponseResult(requestId).body();
     }
+
 }

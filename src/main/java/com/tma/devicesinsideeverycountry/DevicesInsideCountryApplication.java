@@ -1,36 +1,35 @@
+package com.tma.devicesinsideeverycountry;
+
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class DevicesInsideCountryApplication {
+import static com.tma.devicesinsideeverycountry.Constant.*;
 
-    public static final int SEQ_NUMBER_INDEX = 1;
-    public static final int COUNTRY_NAME_INDEX = 3;
+public class DevicesInsideCountryApplication {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
         CountryExaminer countryExaminer = new CountryExaminer();
         CoordinateReader reader = new CoordinateReader();
-        List<Coordinate> listCoordinates = reader.getCoordinates();
 
-        String xmlText = countryExaminer.getBulkPostResponse(listCoordinates);
+        String xmlText = countryExaminer.getBulkPostResponse(reader.createRequestBodyFromExcelFile());
 
         XMLParser xmlParser = XMLParser.getInstance();
 
-        String requestID = xmlParser.parseXML(xmlText, Constant.REQUEST_ID_TAG);
+        String requestID = xmlParser.parseXML(xmlText, REQUEST_ID_TAG);
 
         String xmlStatusText = countryExaminer.getJobStatus(requestID);
-        String status = xmlParser.parseXML(xmlStatusText, Constant.JOB_STATUS_TAG);
+        String status = xmlParser.parseXML(xmlStatusText, JOB_STATUS_TAG);
 
         boolean statusIsCompleted = true;
 
-        while (!Constant.COMPLETED_STATUS.equals(status)) {
+        while (!COMPLETED_STATUS.equals(status)) {
             xmlStatusText = countryExaminer.getJobStatus(requestID);
-            status = xmlParser.parseXML(xmlStatusText, Constant.JOB_STATUS_TAG);
+            status = xmlParser.parseXML(xmlStatusText, JOB_STATUS_TAG);
 
-            if (Constant.DELETED_STATUS.equals(status) || Constant.CANCELLED_STATUS.equals(status)) {
+            if (DELETED_STATUS.equals(status) || CANCELLED_STATUS.equals(status)) {
                 statusIsCompleted = false;
                 break;
             }
@@ -38,12 +37,12 @@ public class DevicesInsideCountryApplication {
 
         if (statusIsCompleted) {
             String result = countryExaminer.getResult(requestID);
-            String[] recordLines = result.split(Constant.BREAK_LINE_REGEX);
+            String[] recordLines = result.split(BREAK_LINE_REGEX);
             Map<String, Integer> devicesEveryCountryMap = new HashMap<>();
             long countDevicesInUsed = 0L;
 
             for (String recordLine : recordLines) {
-                String[] record = recordLine.split(Constant.OUTPUT_FIELD_DELIMITER);
+                String[] record = recordLine.split(OUTPUT_FIELD_DELIMITER);
                 String seqNumber = record[SEQ_NUMBER_INDEX];
 
                 Function<String, Boolean> getOneResultAmongAmbiguousResults = "1"::equals;
@@ -51,13 +50,13 @@ public class DevicesInsideCountryApplication {
                     String countryName = record[COUNTRY_NAME_INDEX];
                     int count = devicesEveryCountryMap.getOrDefault(countryName, 0);
                     devicesEveryCountryMap.put(countryName, ++count);
-                    countDevicesInUsed++;
+                    ++countDevicesInUsed;
                 }
             }
 
-            System.out.println("All " + reader.getNumberOfDevices() + " devices which " + countDevicesInUsed + " in used");
+            System.out.println("All " + reader.getNumberOfDevices() + " devices which " + countDevicesInUsed + " devices in used");
 
-            devicesEveryCountryMap.forEach((countryName, numberOfDevices) -> System.out.println(countryName + ": " + numberOfDevices + " devices"));
+            devicesEveryCountryMap.forEach((countryName, numberOfDevices) -> System.out.println(countryName + ": " + numberOfDevices + ((numberOfDevices > 1) ? " devices" : " device")));
         } else {
             System.out.println("Failed to running batch jobs");
         }

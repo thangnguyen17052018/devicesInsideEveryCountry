@@ -1,3 +1,5 @@
+package com.tma.devicesinsideeverycountry;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -20,9 +22,14 @@ public class ExcelFileReader {
         }
     }
 
-    public double getData(int sheetIndex, int row, int column) {
+    public double getDataNumeric(int sheetIndex, int row, int column) {
         sheet = workbook.getSheetAt(sheetIndex);
         return sheet.getRow(row).getCell(column).getNumericCellValue();
+    }
+
+    public String getDataString(int sheetIndex, int row, int column) {
+        sheet = workbook.getSheetAt(sheetIndex);
+        return sheet.getRow(row).getCell(column).getStringCellValue();
     }
 
     public int getRowCount(int sheetIndex) {

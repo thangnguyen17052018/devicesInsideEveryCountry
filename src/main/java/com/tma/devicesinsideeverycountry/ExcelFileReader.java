@@ -6,20 +6,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ExcelFileReader {
 
-    private XSSFWorkbook workbook;
+    private final XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
-    public ExcelFileReader(String filePath) {
-        try {
-            File source = new File(filePath);
-            FileInputStream fileInputStream = new FileInputStream(source);
-            workbook = new XSSFWorkbook(fileInputStream);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
+    public ExcelFileReader(String filePath) throws IOException {
+        File source = new File(filePath);
+        FileInputStream fileInputStream = new FileInputStream(source);
+        workbook = new XSSFWorkbook(Objects.requireNonNull(fileInputStream));
     }
 
     public double getDataNumeric(int sheetIndex, int row, int column) {

@@ -1,13 +1,18 @@
 package com.tma.devicesinsideeverycountry;
 
+import java.io.IOException;
+
 import static com.tma.devicesinsideeverycountry.Constant.*;
 
 public class CoordinateReader {
 
-    private ExcelFileReader reader;
+    private final ExcelFileReader reader;
+
+    public CoordinateReader() throws IOException {
+        this.reader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
+    }
 
     public String createRequestBodyFromExcelFile() {
-        reader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
         int rows = reader.getRowCount(SHEET_DATA_INDEX);
         StringBuilder bodyString = new StringBuilder("recId|prox\n");
 

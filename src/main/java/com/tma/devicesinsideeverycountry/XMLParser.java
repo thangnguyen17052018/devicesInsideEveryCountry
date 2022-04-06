@@ -25,21 +25,17 @@ public class XMLParser {
         return xmlParser;
     }
 
-    public String parseXML(String xmlText, String tagName) {
+    public String parseXML(String xmlText, String tagName) throws SAXException, IOException, ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         InputSource inputSource;
-        String result = "";
-        try {
-            builder = factory.newDocumentBuilder();
-            inputSource = new InputSource(new StringReader(xmlText));
-            Document doc = builder.parse(inputSource);
-            NodeList list = doc.getElementsByTagName(tagName);
-            result = list.item(0).getTextContent();
-        } catch (ParserConfigurationException | IOException | SAXException e) {
-            e.printStackTrace();
-        }
-        return result;
+
+        builder = factory.newDocumentBuilder();
+        inputSource = new InputSource(new StringReader(xmlText));
+        Document doc = builder.parse(inputSource);
+        NodeList list = doc.getElementsByTagName(tagName);
+
+        return list.item(0).getTextContent();
     }
 
 }

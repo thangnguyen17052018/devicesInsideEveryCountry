@@ -7,6 +7,7 @@ public class Constant {
     public static final String COMPLETED_STATUS = "completed";
     public static final String DELETED_STATUS = "deleted";
     public static final String CANCELLED_STATUS = "cancelled";
+    public static final String FAILED_STATUS = "failed";
     public static final String BREAK_LINE_REGEX = "\n";
     public static final String OUTPUT_FIELD_DELIMITER = "\\|";
     public static final String EXCEL_FILE_PATH = "F:\\location data_2022_02_10.xlsx";
@@ -17,6 +18,7 @@ public class Constant {
     public static final int STATUS_COLUMN = 5;
     public static final int SHEET_DATA_INDEX = 1;
     public static final int REPORT_DATA_INDEX = 1;
+    public static final int MAX_ATTEMP = 20;
     public static final String READY_FOR_USE = "READY_FOR_USE";
-
+    public static final String ACCEPT_STATUS = "accepted";
 }

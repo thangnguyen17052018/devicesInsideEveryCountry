@@ -8,6 +8,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
+
 public class ReverseGeocoder {
     
     private static final String BATCH_GEOCODING_RESOURCE = "https://batch.geocoder.ls.hereapi.com/6.2/jobs";

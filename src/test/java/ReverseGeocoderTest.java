@@ -1,7 +1,6 @@
 import com.tma.devicesinsideeverycountry.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,7 +19,6 @@ public class ReverseGeocoderTest {
 
     @Before
     public void init() throws IOException {
-        MockitoAnnotations.initMocks(this);
         reverseGeocoder = new ReverseGeocoder();
         coordinateReader = new CoordinateReader();
         requestHelper = new RequestHelper(new CountryExaminer());

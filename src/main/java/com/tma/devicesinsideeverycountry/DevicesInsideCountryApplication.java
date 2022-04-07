@@ -21,7 +21,6 @@ public class DevicesInsideCountryApplication {
 
         if (statusIsCompleted) {
             String result = countryExaminer.getResult(requestID);
-            System.out.println(result);
             Map<String, Long> devicesEveryCountryMap = ApplicationProcessor.getInstance().processIdentifyDevicesEveryCountry(result);
             Long countDevicesInUsed = devicesEveryCountryMap.values().stream().reduce(0L, Long::sum);
             System.out.println("All " + reader.getNumberOfDevices() + " devices which " + countDevicesInUsed + " devices in used");

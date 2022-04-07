@@ -30,7 +30,7 @@ public class ReverseGeocoderTest {
     public void testPostPostBatchRequestReverseGeocodingStatusOK() throws IOException, InterruptedException {
         String requestBody = coordinateReader.createRequestBodyFromExcelFile();
         HttpResponse<String> response = reverseGeocoder.sendPostBatchRequestReverseGeocoding(requestBody);
-        System.out.println(response.body());
+
         assertThat(response.statusCode()).isEqualTo(200);
     }
 

@@ -23,7 +23,7 @@ public class RequestHelper {
 
     public String getJobStatusInString(String requestID) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
         String xmlStatusText = countryExaminer.getJobStatus(requestID);
-        System.out.println(xmlStatusText);
+
         return XMLParser.getInstance().parseXML(xmlStatusText, JOB_STATUS_TAG);
     }
 
@@ -32,7 +32,7 @@ public class RequestHelper {
 
         while (!COMPLETED_STATUS.equals(jobStatus)) {
             jobStatus = getJobStatusInString(requestID);
-            System.out.println(jobStatus);
+
             if (checkStatusNotCompleted(jobStatus) || attempt > MAX_ATTEMP) {
                 return false;
             }

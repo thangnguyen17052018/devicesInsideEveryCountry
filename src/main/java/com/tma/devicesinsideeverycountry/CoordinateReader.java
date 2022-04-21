@@ -1,19 +1,22 @@
 package com.tma.devicesinsideeverycountry;
 
-import java.io.IOException;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import static com.tma.devicesinsideeverycountry.Constant.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CoordinateReader {
 
-    private final ExcelFileReader reader;
-
-    public CoordinateReader() throws IOException {
-        this.reader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
-    }
+    private ExcelFileReader reader;
 
     public String createRequestBodyFromExcelFile() {
-        int rows = reader.getRowCount(SHEET_DATA_INDEX);
+        int rows = reader.getRowCount(REPORT_DATA_INDEX);
         StringBuilder bodyString = new StringBuilder("recId|prox\n");
 
         for (int i = 1; i < rows; i++) {

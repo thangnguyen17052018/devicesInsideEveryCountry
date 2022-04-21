@@ -1,4 +1,6 @@
+import com.tma.devicesinsideeverycountry.Constant;
 import com.tma.devicesinsideeverycountry.CoordinateReader;
+import com.tma.devicesinsideeverycountry.ExcelFileReader;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +14,8 @@ public class CoordinateReadTest {
 
     @Before
     public void setUp() throws IOException {
-        reader = new CoordinateReader();
+        ExcelFileReader excelFileReader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
+        reader = new CoordinateReader(excelFileReader);
     }
 
     @Test

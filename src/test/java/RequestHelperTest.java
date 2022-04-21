@@ -1,7 +1,4 @@
-import com.tma.devicesinsideeverycountry.Constant;
-import com.tma.devicesinsideeverycountry.CoordinateReader;
-import com.tma.devicesinsideeverycountry.CountryExaminer;
-import com.tma.devicesinsideeverycountry.RequestHelper;
+import com.tma.devicesinsideeverycountry.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +22,8 @@ public class RequestHelperTest {
     @Before
     public void init() throws IOException {
         MockitoAnnotations.initMocks(this);
-        coordinateReader = new CoordinateReader();
+        ExcelFileReader excelFileReader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
+        coordinateReader = new CoordinateReader(excelFileReader);
         requestHelper = new RequestHelper(new CountryExaminer());
     }
 

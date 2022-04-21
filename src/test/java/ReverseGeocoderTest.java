@@ -20,7 +20,8 @@ public class ReverseGeocoderTest {
     @Before
     public void init() throws IOException {
         reverseGeocoder = new ReverseGeocoder();
-        coordinateReader = new CoordinateReader();
+        ExcelFileReader excelFileReader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
+        coordinateReader = new CoordinateReader(excelFileReader);
         requestHelper = new RequestHelper(new CountryExaminer());
     }
 

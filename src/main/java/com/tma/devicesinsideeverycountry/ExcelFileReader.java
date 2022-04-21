@@ -17,6 +17,8 @@ public class ExcelFileReader {
         File source = new File(filePath);
         FileInputStream fileInputStream = new FileInputStream(source);
         workbook = new XSSFWorkbook(Objects.requireNonNull(fileInputStream));
+
+        fileInputStream.close();
     }
 
     public double getDataNumeric(int sheetIndex, int row, int column) {

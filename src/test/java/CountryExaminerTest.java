@@ -1,7 +1,4 @@
-import com.tma.devicesinsideeverycountry.CoordinateReader;
-import com.tma.devicesinsideeverycountry.CountryExaminer;
-import com.tma.devicesinsideeverycountry.RequestHelper;
-import com.tma.devicesinsideeverycountry.XMLParser;
+import com.tma.devicesinsideeverycountry.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
@@ -22,7 +19,8 @@ public class CountryExaminerTest {
     @Before
     public void setUp() throws IOException {
         examiner = new CountryExaminer();
-        coordinateReader = new CoordinateReader();
+        ExcelFileReader excelFileReader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
+        coordinateReader = new CoordinateReader(excelFileReader);
         helper = new RequestHelper(examiner);
     }
 

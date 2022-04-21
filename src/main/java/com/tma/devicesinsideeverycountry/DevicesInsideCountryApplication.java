@@ -11,7 +11,8 @@ public class DevicesInsideCountryApplication {
     public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
 
         CountryExaminer countryExaminer = new CountryExaminer();
-        CoordinateReader reader = new CoordinateReader();
+        ExcelFileReader excelFileReader = new ExcelFileReader(Constant.EXCEL_FILE_PATH);
+        CoordinateReader reader = new CoordinateReader(excelFileReader);
         RequestHelper helper = new RequestHelper(countryExaminer);
 
         String requestID = helper.getRequestIdInXMLResponse(reader);
